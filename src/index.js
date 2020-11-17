@@ -4,7 +4,8 @@ let h6 = document.querySelector("h6");
 
 let date = dateToday.getDate();
 let hours = dateToday.getHours();
-let minutes = dateToday.getMinutes();
+let minutes = ("0" + dateToday.getMinutes()).substr(-2);
+
 
 let week = [
   "Sunday",
@@ -51,21 +52,30 @@ function inputData(response) {
   let description = response.data.weather[0].main;
   let city = response.data.name;
   let country = response.data.sys.country;
+  let feel = Math.round(response.data.main.feels_like);
+  let humid = response.data.main.humidity;
+  let windspeed = Math.round((response.data.wind.speed*18)/5);
   let h1 = document.querySelector("h1");
   let celsius = document.querySelector("#celsius-temp");
   let weather = document.querySelector("#weather-condition");
+  let realFeel = document.querySelector(".feel");
+  let humidity = document.querySelector(".humidity");
+  let wind = document.querySelector (".wind");
+  let iconElement = document.querySelector (".weather-image-big");
   h1.innerHTML = `${city}, ${country}`;
   celsius.innerHTML = `${temperature} °C`;
   weather.innerHTML = `${description}`;
+  realFeel.innerHTML = ` Real feel : ${feel} °C`;
+  humidity.innerHTML = `Humidity: ${humid} %`;
+  wind.innerHTML = `Wind Speed: ${windspeed} km/h`;
+  iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
 }
-
 let cityfinder = document.querySelector("#city-form");
 cityfinder.addEventListener("submit", searchCity);
 
 let searchButton = document.querySelector("#search-button");
 searchButton.addEventListener("click", searchCity);
 
-// current position button
 function showPosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
@@ -90,10 +100,22 @@ function displayData(response) {
   let description = response.data.weather[0].main;
   let location = response.data.name;
   let country = response.data.sys.country;
+  let feel = Math.round(response.data.main.feels_like);
+  let humid = response.data.main.humidity;
+  let windspeed = Math.round((response.data.wind.speed*18)/5);
   let h1 = document.querySelector("h1");
   let celsius = document.querySelector("#celsius-temp");
   let weather = document.querySelector("#weather-condition");
+  let realFeel = document.querySelector(".feel");
+  let humidity = document.querySelector(".humidity");
+  let wind = document.querySelector (".wind");
+  let iconElement = document.querySelector (".weather-image-big");
   h1.innerHTML = `${location}, ${country}`;
   celsius.innerHTML = `${temperature} °C`;
   weather.innerHTML = `${description}`;
+  realFeel.innerHTML = ` Real feel: ${feel} °C`;
+  humidity.innerHTML = `Humidity: ${humid} %`;
+  wind.innerHTML = `Wind Speed: ${windspeed} km/h`;
+  iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
 }
+

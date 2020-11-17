@@ -13,7 +13,7 @@ body {
     text-align: left;
     padding-bottom: 10px;
     color: #f6f5f5;
-    font-size: 1.25rem;
+    font-size: 0.875em;
     font-family: "Varela Round", sans-serif;
   }
   h3 {
@@ -27,7 +27,7 @@ body {
     margin-left: 15px;
     color: #f6f5f5;
     font-family: "Varela Round", sans-serif;
-    font-size: 18px;
+    font-size: 0.750em;
   }
   .row-variables {
     display: block;
@@ -69,14 +69,14 @@ body {
   
   #weather-condition {
     font-size: 23px;
-    top: -35px;
+    top: -55px;
     color: #f6f5f5;
     font-family: "Varela Round", sans-serif;
     margin-top: 10px;
   }
   .weather-image-big {
-    width: 87px;
-    height: 87px;
+    width: 100px;
+    height: 100px;
   }
   #date-time {
     font-size: 12px;
