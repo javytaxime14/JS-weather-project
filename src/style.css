@@ -49,21 +49,15 @@ body {
     position: relative;
     bottom: 21px;
   }
-  .temperature {
-    position: relative;
-    text-align: left;
-    left: 87px;
-    top: -43px;
-    padding: 10px;
-  }
+  
   #celsius-temp {
     position: relative;
     font-size: 30px;
     font-weight: 500;
     font-family: "Rubik", sans-serif;
     text-align: center;
-    top: -100px;
-    left: 50px;
+    top: 10px;
+    left: 70px;
     color: #512da8;
   }
   

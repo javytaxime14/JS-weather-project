@@ -36,19 +36,25 @@ let month = months[dateToday.getMonth()];
 
 h6.innerHTML = `As of ${day}, ${month} ${date}, ${hours}:${minutes}`;
 
+function showForecast (response) {
+  console.log (response.data)
+}
+
 function searchCity(event) {
   event.preventDefault();
   let apiKey = "b60a88cedc4311c68472f2500a9bfa39";
   let city = document.querySelector("#search-city-input").value;
   let unit = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
-
   axios.get(apiUrl).then(inputData);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=${apiKey}`;
+  axios.get(apiUrl).then(showForecast);
 }
 
 function inputData(response) {
   console.log(response.data);
-  let temperature = Math.round(response.data.main.temp);
+  let celsiusTemperature = Math.round(response.data.main.temp);
   let description = response.data.weather[0].main;
   let city = response.data.name;
   let country = response.data.sys.country;
@@ -63,7 +69,7 @@ function inputData(response) {
   let wind = document.querySelector (".wind");
   let iconElement = document.querySelector (".weather-image-big");
   h1.innerHTML = `${city}, ${country}`;
-  celsius.innerHTML = `${temperature} °C`;
+  celsius.innerHTML = `${celsiusTemperature} °C`;
   weather.innerHTML = `${description}`;
   realFeel.innerHTML = ` Real feel : ${feel} °C`;
   humidity.innerHTML = `Humidity: ${humid} %`;
@@ -82,8 +88,10 @@ function showPosition(position) {
   let apiKey = "b60a88cedc4311c68472f2500a9bfa39";
   let unit = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit}`;
-
   axios.get(apiUrl).then(displayData);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${apiKey}`;
+  axios.get(apiUrl).then(showForecast);
 }
 
 function getPosition(event) {
@@ -96,7 +104,7 @@ currentButton.addEventListener("click", getPosition);
 
 function displayData(response) {
   console.log(response.data);
-  let temperature = Math.round(response.data.main.temp);
+  let celsiusTemperature = Math.round(response.data.main.temp);
   let description = response.data.weather[0].main;
   let location = response.data.name;
   let country = response.data.sys.country;
@@ -111,11 +119,10 @@ function displayData(response) {
   let wind = document.querySelector (".wind");
   let iconElement = document.querySelector (".weather-image-big");
   h1.innerHTML = `${location}, ${country}`;
-  celsius.innerHTML = `${temperature} °C`;
+  celsius.innerHTML = `${celsiusTemperature} °C`;
   weather.innerHTML = `${description}`;
   realFeel.innerHTML = ` Real feel: ${feel} °C`;
   humidity.innerHTML = `Humidity: ${humid} %`;
   wind.innerHTML = `Wind Speed: ${windspeed} km/h`;
   iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
 }
-
