@@ -37,7 +37,42 @@ let month = months[dateToday.getMonth()];
 h6.innerHTML = `As of ${day}, ${month} ${date}, ${hours}:${minutes}`;
 
 function showForecast (response) {
-  console.log (response.data)
+  console.log (response.data);
+  let day1min = Math.round(response.data.daily[0].temp.min);
+  let day1max = Math.round(response.data.daily[0].temp.max);
+  let day2min = Math.round(response.data.daily[1].temp.min);
+  let day2max = Math.round(response.data.daily[1].temp.max);
+  let day3min = Math.round(response.data.daily[2].temp.min);
+  let day3max = Math.round(response.data.daily[2].temp.max);
+  let day4min = Math.round(response.data.daily[3].temp.min);
+  let day4max = Math.round(response.data.daily[3].temp.max);
+  let day5min = Math.round(response.data.daily[4].temp.min);
+  let day5max = Math.round(response.data.daily[4].temp.max);
+  
+
+  day1minimum = document.querySelector("#day1-min");
+  day1maximum = document.querySelector("#day1-max");
+  day2minimum = document.querySelector("#day2-min");
+  day2maximum = document.querySelector("#day2-max");
+  day3minimum = document.querySelector("#day3-min");
+  day3maximum = document.querySelector("#day3-max");
+  day4minimum = document.querySelector("#day4-min");
+  day4maximum = document.querySelector("#day4-max");
+  day5minimum = document.querySelector("#day5-min");
+  day5maximum = document.querySelector("#day5-max");
+  let iconElement = document.querySelector (".sun",".partial");
+
+  day1minimum.innerHTML = `${day1min} °C`;
+  day1maximum.innerHTML = `${day1max} °C`;
+  day2minimum.innerHTML = `${day2min} °C`;
+  day2maximum.innerHTML = `${day2max} °C`;
+  day3minimum.innerHTML = `${day3min} °C`;
+  day3maximum.innerHTML = `${day3max} °C`;
+  day4minimum.innerHTML = `${day4min} °C`;
+  day4maximum.innerHTML = `${day4max} °C`;
+  day5minimum.innerHTML = `${day5min} °C`;
+  day5maximum.innerHTML = `${day5max} °C`;
+  iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
 
 function searchCity(event) {
@@ -48,7 +83,7 @@ function searchCity(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(inputData);
 
-  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=${apiKey}`;
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(showForecast);
 }
 
@@ -60,7 +95,7 @@ function inputData(response) {
   let country = response.data.sys.country;
   let feel = Math.round(response.data.main.feels_like);
   let humid = response.data.main.humidity;
-  let windspeed = Math.round((response.data.wind.speed*18)/5);
+  let windspeed = Math.round((response.data.wind.speed * 18) / 5);
   let h1 = document.querySelector("h1");
   let celsius = document.querySelector("#celsius-temp");
   let weather = document.querySelector("#weather-condition");
@@ -74,7 +109,7 @@ function inputData(response) {
   realFeel.innerHTML = ` Real feel : ${feel} °C`;
   humidity.innerHTML = `Humidity: ${humid} %`;
   wind.innerHTML = `Wind Speed: ${windspeed} km/h`;
-  iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
+  iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
 let cityfinder = document.querySelector("#city-form");
 cityfinder.addEventListener("submit", searchCity);
@@ -90,9 +125,50 @@ function showPosition(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(displayData);
 
-  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${apiKey}`;
-  axios.get(apiUrl).then(showForecast);
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${apiKey}&units=${unit}`;
+  axios.get(apiUrl).then(showForecast);  
 }
+
+
+function showForecast (response) {
+  console.log (response.data);
+  let day1min = Math.round(response.data.daily[0].temp.min);
+  let day1max = Math.round(response.data.daily[0].temp.max);
+  let day2min = Math.round(response.data.daily[1].temp.min);
+  let day2max = Math.round(response.data.daily[1].temp.max);
+  let day3min = Math.round(response.data.daily[2].temp.min);
+  let day3max = Math.round(response.data.daily[2].temp.max);
+  let day4min = Math.round(response.data.daily[3].temp.min);
+  let day4max = Math.round(response.data.daily[3].temp.max);
+  let day5min = Math.round(response.data.daily[4].temp.min);
+  let day5max = Math.round(response.data.daily[4].temp.max);
+  
+
+  day1minimum = document.querySelector("#day1-min");
+  day1maximum = document.querySelector("#day1-max");
+  day2minimum = document.querySelector("#day2-min");
+  day2maximum = document.querySelector("#day2-max");
+  day3minimum = document.querySelector("#day3-min");
+  day3maximum = document.querySelector("#day3-max");
+  day4minimum = document.querySelector("#day4-min");
+  day4maximum = document.querySelector("#day4-max");
+  day5minimum = document.querySelector("#day5-min");
+  day5maximum = document.querySelector("#day5-max");
+  let iconElement = document.querySelector (".sun",".partial");
+
+  day1minimum.innerHTML = `${day1min} °C`;
+  day1maximum.innerHTML = `${day1max} °C`;
+  day2minimum.innerHTML = `${day2min} °C`;
+  day2maximum.innerHTML = `${day2max} °C`;
+  day3minimum.innerHTML = `${day3min} °C`;
+  day3maximum.innerHTML = `${day3max} °C`;
+  day4minimum.innerHTML = `${day4min} °C`;
+  day4maximum.innerHTML = `${day4max} °C`;
+  day5minimum.innerHTML = `${day5min} °C`;
+  day5maximum.innerHTML = `${day5max} °C`;
+  iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+}
+
 
 function getPosition(event) {
   event.preventDefault();
@@ -110,7 +186,7 @@ function displayData(response) {
   let country = response.data.sys.country;
   let feel = Math.round(response.data.main.feels_like);
   let humid = response.data.main.humidity;
-  let windspeed = Math.round((response.data.wind.speed*18)/5);
+  let windspeed = Math.round((response.data.wind.speed * 18) / 5);
   let h1 = document.querySelector("h1");
   let celsius = document.querySelector("#celsius-temp");
   let weather = document.querySelector("#weather-condition");
@@ -125,4 +201,42 @@ function displayData(response) {
   humidity.innerHTML = `Humidity: ${humid} %`;
   wind.innerHTML = `Wind Speed: ${windspeed} km/h`;
   iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
+}
+
+function showForecast (response) {
+  let day1min = Math.round(response.data.daily[0].temp.min);
+  let day1max = Math.round(response.data.daily[0].temp.max);
+  let day2min = Math.round(response.data.daily[1].temp.min);
+  let day2max = Math.round(response.data.daily[1].temp.max);
+  let day3min = Math.round(response.data.daily[2].temp.min);
+  let day3max = Math.round(response.data.daily[2].temp.max);
+  let day4min = Math.round(response.data.daily[3].temp.min);
+  let day4max = Math.round(response.data.daily[3].temp.max);
+  let day5min = Math.round(response.data.daily[4].temp.min);
+  let day5max = Math.round(response.data.daily[4].temp.max);
+  
+
+  day1minimum = document.querySelector("#day1-min");
+  day1maximum = document.querySelector("#day1-max");
+  day2minimum = document.querySelector("#day2-min");
+  day2maximum = document.querySelector("#day2-max");
+  day3minimum = document.querySelector("#day3-min");
+  day3maximum = document.querySelector("#day3-max");
+  day4minimum = document.querySelector("#day4-min");
+  day4maximum = document.querySelector("#day4-max");
+  day5minimum = document.querySelector("#day5-min");
+  day5maximum = document.querySelector("#day5-max");
+  let iconElement = document.querySelector (".sun",".partial");
+
+  day1minimum.innerHTML = `${day1min} °C`;
+  day1maximum.innerHTML = `${day1max} °C`;
+  day2minimum.innerHTML = `${day2min} °C`;
+  day2maximum.innerHTML = `${day2max} °C`;
+  day3minimum.innerHTML = `${day3min} °C`;
+  day3maximum.innerHTML = `${day3max} °C`;
+  day4minimum.innerHTML = `${day4min} °C`;
+  day4maximum.innerHTML = `${day4max} °C`;
+  day5minimum.innerHTML = `${day5min} °C`;
+  day5maximum.innerHTML = `${day5max} °C`;
+  iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
