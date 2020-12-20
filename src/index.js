@@ -37,7 +37,7 @@ let month = months[dateToday.getMonth()];
 h6.innerHTML = `As of ${day}, ${month} ${date}, ${hours}:${minutes}`;
 
 let changeColour = document.querySelector("#colour-box");
-  if (hours <= 8 && hours <= 12) {
+  if (hours >= 8 && hours <= 13) {
     changeColour.classList.add("morning");
     changeColour.classList.remove("evening");
     changeColour.classList.remove("night");  
