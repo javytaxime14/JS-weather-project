@@ -36,6 +36,25 @@ let month = months[dateToday.getMonth()];
 
 h6.innerHTML = `As of ${day}, ${month} ${date}, ${hours}:${minutes}`;
 
+let changeColour = document.querySelector("#colour-box");
+  if (hours >= 8 && hours <= 12) {
+    changeColour.classList.add("morning");
+    changeColour.classList.remove("evening");
+    changeColour.classList.remove("night");  
+  }
+
+  else if (hours >= 13 && hours <= 20) {
+    changeColour.classList.add("evening");
+    changeColour.classList.remove("morning");
+    changeColour.classList.remove("night");
+    
+  }
+  else if (hours >= 21 && hours < 8) {
+    changeColour.classList.add("night");
+    changeColour.classList.remove("morning");
+    changeColour.classList.remove("evening");
+  }
+
 function formatDay(timestamp) {
   let date = new Date(timestamp);
   let days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];

@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class="weather-app morning evening night" id="colour-box">
     <div class="container">
         <h1 class="current-city px-2">SANTIAGO, CL</h1>
         <div class="row">
@@ -20,25 +21,24 @@
                 <div class="weather-variables">
                     <div class="row-variables">
                         <div class="feel mx-2">
-                            Real feel: 27°C
+                            Real feel: 
                         </div>
                         <div class="humidity mx-2">
-                            Humidity: 31%
+                            Humidity: 
                         </div>
                         <div class="wind mx-2"> 
-                            Wind Speed: 8 km/hr
+                            Wind Speed: 
                         </div>
                     </div>
                 </div>
                     <img src="images/sun-small-cloud.png" alt="sun small cloud" class="weather-image-big">
                     <p class="temperature">  
-                        <strong id="celsius-temp"></strong>
+                        <strong id="celsius-temp" class="current"></strong>
                     </p>
                     <br>
-                    <p id="weather-condition">
-                        Sunny
+                    <p id="weather-condition">   
                     </p>
-                    <h6 id="date-time">
+                    <h6 id="date-time" class="date">
                     </h6>
                     <br />
                     <p class="finder my-3">Forecast finder</p> 
@@ -98,8 +98,9 @@
     </div>
     <br>
     <footer>
-        <small class="text-right px-2 m-4 text-white"><a href="https://github.com/javytaxime14/initial-weather-project">Open-source code</a> by Javiera Hidalgo</small>
+        <small class="text-right px-2 m-4 text-white"><a href="https://github.com/javytaxime14/initial-weather-project">Open-source code</a> by Javiera Hidalgo  🌈</small>
     </footer>
+</div>
     <script src="src/index.js">
     </script>
 </body>
